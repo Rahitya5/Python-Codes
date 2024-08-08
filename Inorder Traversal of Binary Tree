@@ -13,6 +13,14 @@ class BinaryTree:
             self._inorder_recursive(node.left)
             print(node.value,end="->")
             self._inorder_recursive(node.right)
+    # DEPTH/HEIGHT OF TREE
+    def height(self,node):
+        if node is None:
+            return 0 
+        else:
+            left_height=self.height(node.left)
+            right_height=self.height(node.right)
+            return max(left_height,right_height)+1
      
 #Create nodes 
 root=Node(10)
@@ -25,3 +33,4 @@ root.right.right=Node(54)
 tree=BinaryTree()
 tree.root1=root
 print(tree._inorder_recursive(tree.root1))
+print(tree.height(tree.root1))
