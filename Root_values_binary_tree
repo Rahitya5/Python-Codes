@@ -1,0 +1,38 @@
+class Node:
+    def __init__(self,key):
+        self.left=None
+        self.right=None
+        self.value=key
+class BinaryTree:
+    def __init__(self):
+        self.root1=None
+    #used to the tree from class Node and its object root 
+    def _inorder_recursive(self,node):
+        if node:
+            self._inorder_recursive(node.left)
+            print(node.value,end="->")
+            self._inorder_recursive(node.right)
+    def print_leaves(self,node):
+        #print all leaf nodes of binary tree 
+        if node is None:
+            return 
+        if node.left is None and node.right is None:
+            print(node.value,end='')
+        if node.left:
+            self.print_leaves(node.left)
+        if node.right:
+            self.print_leaves(node.right)
+#Create nodes 
+root=Node(10)
+root.left=Node(34)
+root.right=Node(20)
+root.left.left=Node(3)
+root.left.right=Node(4)
+root.right.left=Node(12)
+root.right.right=Node(54)
+tree=BinaryTree()
+tree.root1=root
+print(tree._inorder_recursive(tree.root1))
+#print the leaf nodes
+print("Leaf nodes of binary tree:",end=' ')
+tree.print_leaves(tree.root1)
