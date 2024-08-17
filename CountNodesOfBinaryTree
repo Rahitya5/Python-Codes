@@ -1,0 +1,30 @@
+class Node:
+    def __init__(self,key):
+        self.left=None
+        self.right=None
+        self.value=key
+class BinaryTree:
+    def __init__(self):
+        self.root1=None
+    #used to the tree from class Node and its object root 
+    def _inorder_recursive(self,node):
+        if node:
+            self._inorder_recursive(node.left)
+            print(node.value,end="->")
+            self._inorder_recursive(node.right)
+    def count_nodes(self,node):
+        if node is None:
+            return 0
+        return 1+self.count_nodes(node.left)+self.count_nodes(node.right)
+#Create nodes 
+root=Node(10)
+root.left=Node(34)
+root.right=Node(20)
+root.left.left=Node(3)
+root.left.right=Node(4)
+root.right.left=Node(12)
+root.right.right=Node(54)
+tree=BinaryTree()
+tree.root1=root
+print(tree._inorder_recursive(tree.root1))
+print("Number of nodes:",tree.count_nodes(tree.root1))
