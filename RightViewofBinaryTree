@@ -1,0 +1,37 @@
+class Node:
+    def __init__(self,key):
+        self.left=None
+        self.right=None
+        self.value=key
+class BinaryTree:
+    def __init__(self):
+        self.root1=None
+    #used to the tree from class Node and its object root 
+    def _inorder_recursive(self,node):
+        if node:
+            self._inorder_recursive(node.left)
+            print(node.value,end="->")
+            self._inorder_recursive(node.right)
+    #RIGHT SIDE OF BINARY TREE 
+    def rightSideView(self,root,level=0,ans=None):
+        if ans is None:
+            ans=[]
+        if root is None:
+            return ans
+        if len(ans)==level:
+            ans.append(root.value)
+        self.rightSideView(root.right,level+1,ans)
+        self.rightSideView(root.left,level+1,ans)
+        return ans
+#Create nodes 
+root=Node(10)
+root.left=Node(34)
+root.right=Node(20)
+root.left.left=Node(3)
+root.left.right=Node(4)
+root.right.left=Node(12)
+root.right.right=Node(54)
+tree=BinaryTree()
+tree.root1=root
+print(tree._inorder_recursive(tree.root1))
+print("Right side view:",tree.rightSideView(tree.root1))
